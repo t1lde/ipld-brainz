@@ -1,0 +1,7 @@
+cradle:
+  cabal:
+    - path: "cli/Main.hs"
+      component: "ipld-brainz:exe:ipld-brainz-cli"
+
+    - path: "lib"
+      component: "lib:ipld-brainz"

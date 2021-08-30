@@ -1,0 +1,87 @@
+cabal-version:      2.4
+name:               ipld-brainz
+version:            0.1.0.0
+synopsis:           Converting the MusicBrainz DB to IPLD
+author:             Tilde Rose
+extra-source-files: CHANGELOG.md
+
+common lang
+  default-language:   Haskell2010
+  default-extensions:
+    AllowAmbiguousTypes
+    NoImplicitPrelude
+    BangPatterns
+    BinaryLiterals
+    ConstraintKinds
+    DataKinds
+    DeriveFunctor
+    DeriveGeneric
+    DeriveTraversable
+    DerivingStrategies
+    DerivingVia
+    DuplicateRecordFields
+    EmptyCase
+    FlexibleContexts
+    FlexibleInstances
+    GADTs
+    GeneralizedNewtypeDeriving
+    HexFloatLiterals
+    ImportQualifiedPost
+    InstanceSigs
+    KindSignatures
+    LambdaCase
+    MultiParamTypeClasses
+    NumericUnderscores
+    OverloadedStrings
+    OverloadedLabels
+    ScopedTypeVariables
+    StandaloneDeriving
+    TupleSections
+    TypeApplications
+    TypeOperators
+    TypeSynonymInstances
+    UndecidableInstances
+    PolyKinds
+    TypeFamilies
+    RankNTypes
+
+  ghc-options:
+    -Werror -Wall -Wcompat
+    -Wincomplete-uni-patterns
+    -Wredundant-constraints
+    -Wincomplete-record-updates
+    -Wwarn=unused-imports
+    -Wwarn=unused-top-binds
+
+executable ipld-brainz-cli
+  import:         lang
+  main-is:        Main.hs
+  build-depends:  base ^>=4.14.1.0, ipld-brainz
+  hs-source-dirs: cli
+  other-modules:
+
+library
+  import:           lang
+  hs-source-dirs:   lib
+  default-language: Haskell2010
+  build-depends:    base ^>=4.14.1.0,
+                    csv-conduit ,
+                    conduit,
+                    vector,
+                    row-types,
+                    uuid,
+                    time,
+                    text,
+                    filepath,
+                    either,
+                    bytestring,
+                    mtl,
+
+  other-extensions:
+  other-modules:
+  exposed-modules:
+    MB.CSV
+    MB.Schema.DBTable
+    MB.DB.Types
+    MB.DB.ToDB
+    Row.Utils
